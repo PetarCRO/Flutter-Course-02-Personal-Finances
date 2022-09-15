@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './transaction.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(MyApp());
 
@@ -56,7 +57,7 @@ class PersonalFinances extends StatelessWidget {
                               ),
                             ),
                             child: Text(
-                              tx.amount.toString(),
+                              '\$${tx.amount.toString()}',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.redAccent),
