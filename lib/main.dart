@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_finances/widgets/new_transactions.dart';
+import './widgets/chart.dart';
 import './widgets/new_transactions.dart';
 import './models/transaction.dart';
 import './widgets/transactionList.dart';
@@ -60,6 +60,16 @@ class _PersonalFinancesState extends State<PersonalFinances> {
     Transaction(id: 't4', title: 'shoes', amount: 21.98, date: DateTime.now()),
   ];
 
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
+
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
         id: DateTime.now().toString(),
@@ -93,14 +103,7 @@ class _PersonalFinancesState extends State<PersonalFinances> {
       ),
       body: Column(
         children: [
-          Card(
-            child: Container(
-              child: const Text('CHART!'),
-              width: double.infinity,
-              color: Colors.blue,
-            ),
-            elevation: 5,
-          ),
+          Chart(_recentTransactions),
           TransactionList(_userTransactions),
         ],
       ),
