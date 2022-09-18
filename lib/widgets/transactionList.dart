@@ -28,18 +28,17 @@ class TransactionList extends StatelessWidget {
                   ),
                   child: Text(
                     '\$${transactions[index].amount.toStringAsFixed(2)}',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.redAccent),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      transactions[index].title,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 15),
-                    ),
+                    Text(transactions[index].title,
+                        style: Theme.of(context).textTheme.titleMedium),
                     Text(
                       DateFormat('dd/MM/yyyy').format(transactions[index].date),
                       style:
